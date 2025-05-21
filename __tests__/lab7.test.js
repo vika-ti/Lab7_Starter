@@ -40,7 +40,7 @@ describe('Basic user flow for Website', () => {
 
       const item = prodItemsData[i];
       if (!item.title || item.title.length === 0) allArePopulated = false;
-      if (!item.price || item.price.length === 0) allArePopulated = false;
+      if (!item.price || item.price.toString().length === 0) allArePopulated = false;
       if (!item.image || item.image.length === 0) allArePopulated = false;
     }
 
@@ -54,18 +54,6 @@ describe('Basic user flow for Website', () => {
     * Remove the .skip from this it once you are finished writing this test.
     */
 
-  }, 10000);
-
-  it('Make sure <product-item> elements are populated', async () => {
-    const allArePopulated = await page.$$eval('product-item', prodItems => {
-      return prodItems.every(item => {
-        const data = item.data;
-        return data && data.title && data.title.length > 0 && 
-               data.price && data.price > 0 && 
-               data.image && data.image.length > 0;
-      });
-    });
-    expect(allArePopulated).toBe(true);
   }, 10000);
 
   // Check to make sure that when you click "Add to Cart" on the first <product-item> that
